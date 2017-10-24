@@ -1,0 +1,9 @@
+version: '3'
+services:
+    node:
+        build:
+            context: ./dockerfiles/node 
+        ports:
+            - "4200:4200"
+        volumes:
+            - ./app:/app
