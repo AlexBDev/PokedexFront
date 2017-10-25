@@ -6,6 +6,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { PokeapiService } from './services/pokeapi.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,9 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     HttpModule,
     ChartsModule
   ],
-  providers: [],
+  providers: [
+    PokeapiService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
