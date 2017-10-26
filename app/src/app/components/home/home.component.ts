@@ -13,23 +13,21 @@ import { PokeapiService } from '../../services/pokeapi.service';
 })
 export class HomeComponent implements OnInit {
 
-  searchInput: string = '';
-  pokemon = null;
-  pokemonPicture = '';
-
-  public radarChartLabels:string[] = ['Speed', 'Defense', 'Attack', 'Hp', 'Special-Defense', 'Special-Attack'];
-  
-  public radarChartData:any = [
-     {data: [], label: 'Stats'}
-  ];
-
+  public isLoading: boolean = false;
+  public searchInput: string = '';
+  public pokemon: any = null;
+  public pokemonName: string = '';
+  public pokemonPicture: string = '';
+  public radarChartLabels: string[] = ['Speed', 'Defense', 'Attack', 'Hp', 'Special-Defense', 'Special-Attack'];
+  public radarChartData: any = [{data: [], label: 'Stats'}];
   public radarChartType:string = 'radar';
-  
-  constructor(private http: HttpClient, private pokeapi: PokeapiService) {}
 
+  constructor(private http: HttpClient, private pokeapi: PokeapiService) {}
+  
   private clearPokemon() {
     this.pokemon = null;
     this.pokemonPicture = '';
+    this.pokemonName = '';
   }
 
   searchPokemon() {
@@ -39,11 +37,16 @@ export class HomeComponent implements OnInit {
       return;
     }
 
+    this.isLoading = true;
     this.pokeapi.getPokemon(this.searchInput).then(pokemon => {
-      console.log(pokemon);
       this.pokemon = pokemon;
       this.pokemonPicture = this.pokemon.sprites.front_default || this.pokemon.sprites.front_female;
+      this.pokemonName = _.find(this.pokemon.names, o => { return o.locale.toLowerCase() === 'fr' }).name;
+    
       this.createChart();
+      this.isLoading = false;      
+    }).catch(error => {
+      this.isLoading = false;            
     });
   }
 
@@ -60,5 +63,4 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

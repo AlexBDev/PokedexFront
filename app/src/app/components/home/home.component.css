@@ -1,0 +1,75 @@
+#search {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#search input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 1.3em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#search button {
+    width: 150px;
+    height: 40px;
+    background: red;
+    color: white;
+    border: none;
+    font-weight: 800;
+    font-size: 1.2em;
+    border-radius: 4px;
+}
+
+#is-loading {
+    font-size: 1.5em;
+    font-weight: 800;
+}
+
+.pokemon-type-label {
+    text-align: center;
+    padding: 6px;
+    border-radius: 2px;
+    background: rgb(224, 224, 224);
+    margin: 8px;
+    display: inline-block;
+}
+
+.pokemon-type-poison {
+    background: #ff5bff;
+}
+
+.pokemon-type-electric {
+    background: yellow;
+}
+
+.pokemon-type-flying {
+    background: #73f5e3;
+}
+
+.pokemon-type-grass {
+    background: rgb(82, 255, 47);
+}
+
+.pokemon-type-bug {
+    background: rgb(144, 207, 42);
+}
+
+.pokemon-type-ground {
+    background: rgb(247, 125, 44);
+}
+
+.pokemon-type-water {
+    background: rgb(57, 209, 255);
+}
+
+
+.bloc-skill {
+    margin-bottom: 35px;
+}
+
+.bloc-skill h4 {
+    margin-bottom: 25px;
+}

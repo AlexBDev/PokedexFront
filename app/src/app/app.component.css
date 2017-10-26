@@ -1,52 +1,18 @@
-h1 {
+#wrapper {
     margin-top: 50px;
+}
+
+nav {
     margin-bottom: 100px;
+    background: red;
 }
 
-#search {
-    margin-bottom: 30px;
+nav a.navbar-brand {
+    font-size: 1.4em;
+    font-weight: 800;
 }
 
-.pokemon-type-label {
-    padding: 4px;
-    border-radius: 2px;
-    background: rgb(224, 224, 224);
-    margin: 8px;
-}
-
-.pokemon-type-poison {
-    background: #ff5bff;
-}
-
-.pokemon-type-electric {
-    background: yellow;
-}
-
-.pokemon-type-flying {
-    background: #73f5e3;
-}
-
-.pokemon-type-grass {
-    background: rgb(82, 255, 47);
-}
-
-.pokemon-type-bug {
-    background: rgb(144, 207, 42);
-}
-
-.pokemon-type-ground {
-    background: rgb(247, 125, 44);
-}
-
-.pokemon-type-water {
-    background: rgb(57, 209, 255);
-}
-
-
-.bloc-skill {
-    margin-bottom: 35px;
-}
-
-.bloc-skill h4 {
-    margin-bottom: 25px;
+nav a {
+    color: white;    
+    font-size: 1.2em;
 }

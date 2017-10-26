@@ -1,41 +1,14 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>Pokewex</h1>
-  
-  <div id="search">
-      <input type="text" [(ngModel)]="searchInput">
-      <button (click)="searchPokemon()">Search</button>
-  </div>
-  
-  <div *ngIf="pokemon != null">
-    <div>
-      <div class="col-md-offset-3 col-md-3">
-          <h3>{{ pokemon.name }}</h3>
-          <img src="{{ pokemonPicture }}" alt="">
-          <div id="pokemon-types" class="row bloc-skill">
-            <h4>Types</h4>
-            <div *ngFor="let type of pokemon.types" class="col-md-2 pokemon-type-label pokemon-type-{{type}}">{{ type }}</div>
+<div class="container" id="wrapper">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Pokewex</a>
           </div>
-
-          <div id="pokemon-abilities" class="row bloc-skill">
-            <h4>Abilities</h4>
-            <div *ngFor="let ability of pokemon.abilities" class="col-md-2 pokemon-type-label">{{ ability }}</div>            
-          </div>
-
-
-          <div class="row bloc-skill">
-            <h4>Moves</h4>
-            <div *ngFor="let move of pokemon.moves" class="col-md-2 pokemon-type-label">{{ move }}</div>            
-          </div>
-      </div>  
-
-      <div class="col-md-4">
-          <canvas baseChart style="width:40%;height:150px;"
-          [datasets]="radarChartData"
-          [labels]="radarChartLabels"
-          [chartType]="radarChartType"></canvas>
-      </div>
-    </div>
-  </div>
-
+          <ul class="nav navbar-nav">
+            <li><a routerLink="home">Home</a></li>
+            <li><a routerLink="list">List</a></li>
+          </ul>
+        </div>
+      </nav>
+      <router-outlet></router-outlet>
 </div>

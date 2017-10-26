@@ -12,9 +12,9 @@ import { ListComponent } from './components/list/list.component';
 import { HomeComponent } from './components/home/home.component';
 
 const APP_ROUTES: Routes = [
-  { path: '', component: AppComponent },
+  { path: '', component: HomeComponent },
   { path: 'list', component: ListComponent },
-  { path: '**', redirectTo: '', component: AppComponent }
+  { path: '**', redirectTo: '', component: HomeComponent }
 ];
 
 @NgModule({

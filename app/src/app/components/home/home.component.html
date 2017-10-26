@@ -1,3 +1,38 @@
-<p>
-  home works!
-</p>
+<div id="search">
+    <input type="text" [(ngModel)]="searchInput" (keyup.enter)="searchPokemon()" placeholder="Pokemon name or id">
+    <button (click)="searchPokemon()">Search</button>
+</div>
+
+<div *ngIf="isLoading" class="text-center" id="is-loading">
+  Loading ...
+</div>
+
+<div *ngIf="pokemon != null">
+  <div class="col-md-offset-2 col-md-4">
+      <h3>{{ pokemonName }}</h3>
+    
+      <img src="{{ pokemonPicture }}" alt="">
+    
+      <div id="pokemon-types" class="bloc-skill">
+        <h4>Types</h4>
+        <div *ngFor="let type of pokemon.types" class="pokemon-type-label pokemon-type-{{type}}">{{ type }}</div>
+      </div>
+
+      <div id="pokemon-abilities" class="bloc-skill">
+        <h4>Abilities</h4>
+        <span *ngFor="let ability of pokemon.abilities" class="pokemon-type-label">{{ ability }}</span>            
+      </div>
+
+      <div class="bloc-skill">
+        <h4>Moves</h4>
+        <span *ngFor="let move of pokemon.moves" class="pokemon-type-label">{{ move }}</span>            
+      </div>
+  </div>  
+
+  <div class="col-md-offset-1 col-md-4">
+    <canvas baseChart style="width:40%;height:150px;"
+    [datasets]="radarChartData"
+    [labels]="radarChartLabels"
+    [chartType]="radarChartType"></canvas>
+  </div>
+</div>
