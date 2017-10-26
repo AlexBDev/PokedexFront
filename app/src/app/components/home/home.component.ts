@@ -5,6 +5,7 @@ import {Http} from '@angular/http';
 import * as _ from 'lodash';
 import { Chart } from 'chart.js';
 import { PokeapiService } from '../../services/pokeapi.service';
+import {Router, ActivatedRoute, Params} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,7 @@ import { PokeapiService } from '../../services/pokeapi.service';
 export class HomeComponent implements OnInit {
 
   public isLoading: boolean = false;
-  public searchInput: string = '';
+  public searchInput: string | number = '';
   public pokemon: any = null;
   public pokemonName: string = '';
   public pokemonPicture: string = '';
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit {
   public radarChartData: any = [{data: [], label: 'Stats'}];
   public radarChartType:string = 'radar';
 
-  constructor(private http: HttpClient, private pokeapi: PokeapiService) {}
+  constructor(private http: HttpClient, private pokeapi: PokeapiService, private route: ActivatedRoute) {}
   
   private clearPokemon() {
     this.pokemon = null;
@@ -30,8 +31,12 @@ export class HomeComponent implements OnInit {
     this.pokemonName = '';
   }
 
-  searchPokemon() {
+  searchPokemon(id: number | string) {
     this.clearPokemon();
+    
+    if (!_.isNil(id)) { 
+      this.searchInput = id;
+    }
 
     if (_.isEmpty(this.searchInput)) {
       return;
@@ -41,7 +46,7 @@ export class HomeComponent implements OnInit {
     this.pokeapi.getPokemon(this.searchInput).then(pokemon => {
       this.pokemon = pokemon;
       this.pokemonPicture = this.pokemon.sprites.front_default || this.pokemon.sprites.front_female;
-      this.pokemonName = _.find(this.pokemon.names, o => { return o.locale.toLowerCase() === 'fr' }).name;
+      this.pokemonName = _.find(this.pokemon.names, o => { return o.locale.toLowerCase() === 'en' }).name;
     
       this.createChart();
       this.isLoading = false;      
@@ -62,5 +67,10 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      if (params.id) {
+        this.searchPokemon(params.id);
+      }
+    });
   }
 }

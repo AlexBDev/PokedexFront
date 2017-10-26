@@ -9,23 +9,21 @@ import * as _ from 'lodash';
 })
 export class ListComponent implements OnInit {
 
-  public pokemonList: Array<any> = [];
   public pokemons: Array<any> = [];
+  public currentOffset = 0;
 
   constructor(private pokeapi: PokeapiService) { }
 
   ngOnInit() {
-    this.pokeapi.listPokemons().then(list => {
-      this.pokemonList = list;
-      for (let i in list) {
-        let pokemon = {
-          name:  _.find(this.pokemonList[i].names, o => { return o.locale.toLowerCase() === 'fr' }).name,
-          picture: this.pokemonList[i].sprites.front_default || this.pokemonList[i].sprites.front_female
-        };
-
-        this.pokemons.push(pokemon);
-      }
+    this.pokeapi.listPokemons(this.currentOffset).then(list => {
+      this.pokemons = list;
     });
   }
 
+  viewMore() {
+    this.currentOffset += 20;
+    this.pokeapi.listPokemons(this.currentOffset).then(list => {
+      this.pokemons = this.pokemons.concat(list);
+    });
+  }
 }

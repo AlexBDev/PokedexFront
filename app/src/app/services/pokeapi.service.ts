@@ -19,9 +19,9 @@ export class PokeapiService {
       });
   }
 
-  listPokemons(): Promise<any> {
+  listPokemons(offset: number): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.request.get(this.API_URL+'/pokemon/list').subscribe(data => {
+      this.request.get(this.API_URL+'/pokemon/list?offset='+offset).subscribe(data => {
           if (data === null) {
             reject(data);
           }

@@ -1,5 +1,7 @@
-<div>
-    <div *ngFor="let pokemon of pokemons" class="col-md-2">
-        {{ pokemon.name }
+<div id="pokemon-list" class="row">
+    <div *ngFor="let pokemon of pokemons" class="col-md-2 pokemon-item">
+        <li><a routerLink="home" [queryParams]="{id:pokemon.name}">{{ pokemon.name }}</a></li>
     </div>
 </div>
+
+<button (click)="viewMore()" id="more">View more</button>
